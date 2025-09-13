@@ -1,5 +1,5 @@
 {
-  "homepage": "http://JValentino13.github.io/To-Do-App_By-Valen",
+  "homepage": "https://mywebsite.com",
   "name": "google-sheets-react",
   "version": "0.1.0",
   "private": true,
@@ -15,8 +15,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-scripts": "^5.0.1",
-    "web-vitals": "^2.1.4",
-    "gh-pages": "^3.2.3"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
