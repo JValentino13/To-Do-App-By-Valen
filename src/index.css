@@ -77,6 +77,7 @@
 .status-buttons {
   display: flex;
   gap: 6px;
+  margin-bottom: 10px;
 }
 
 .status-buttons button {
@@ -125,4 +126,11 @@
 
 .strike {
   text-decoration: line-through;
+}
+.status-buttons .delete-btn {
+  background-color: #e67e22;
+}
+
+.status-buttons .delete-btn:hover {
+  background-color: #d35400;
 }
