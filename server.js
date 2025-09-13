@@ -49,11 +49,20 @@ app.post("/tasks", (req, res) => {
 // 📌 Endpoint: Hapus task
 app.delete("/tasks/:id", (req, res) => {
   const { id } = req.params;
-  db.query("DELETE FROM tasks WHERE id = ?", [id], (err) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.send("Task dihapus");
+  console.log("🗑 Menghapus task dengan id:", id); // <- DEBUG
+
+  db.query("DELETE FROM tasks WHERE id = ?", [id], (err, result) => {
+    if (err) {
+      console.error("❌ Error delete:", err);
+      return res.status(500).json({ error: err.message });
+    }
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Task tidak ditemukan" });
+    }
+    res.send("Task dihapus dari database");
   });
 });
+
 
 
 // 📌 Endpoint: Update status task

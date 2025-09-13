@@ -100,7 +100,7 @@
 }
 
 .status-buttons .notyet-btn {
-  background-color: #e74c3c; /* merah */
+  background-color: #e67e22; /* merah */
 }
 .task-card {
   flex: 1;
@@ -128,9 +128,9 @@
   text-decoration: line-through;
 }
 .status-buttons .delete-btn {
-  background-color: #e67e22;
+  background-color: #e74c3c;
 }
 
 .status-buttons .delete-btn:hover {
-  background-color: #d35400;
+  background-color: #e20c0c;
 }
