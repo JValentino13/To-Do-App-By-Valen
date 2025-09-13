@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.06da13ab.css",
-    "main.js": "/static/js/main.dd6bcf9f.js",
-    "static/js/453.7c759e1d.chunk.js": "/static/js/453.7c759e1d.chunk.js",
-    "index.html": "/index.html",
-    "main.06da13ab.css.map": "/static/css/main.06da13ab.css.map",
-    "main.dd6bcf9f.js.map": "/static/js/main.dd6bcf9f.js.map",
-    "453.7c759e1d.chunk.js.map": "/static/js/453.7c759e1d.chunk.js.map"
+    "main.css": "/To-Do-App_By-Valen/static/css/main.06da13ab.css",
+    "main.js": "/To-Do-App_By-Valen/static/js/main.1a836420.js",
+    "static/js/453.7c759e1d.chunk.js": "/To-Do-App_By-Valen/static/js/453.7c759e1d.chunk.js",
+    "index.html": "/To-Do-App_By-Valen/index.html",
+    "main.06da13ab.css.map": "/To-Do-App_By-Valen/static/css/main.06da13ab.css.map",
+    "main.1a836420.js.map": "/To-Do-App_By-Valen/static/js/main.1a836420.js.map",
+    "453.7c759e1d.chunk.js.map": "/To-Do-App_By-Valen/static/js/453.7c759e1d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.06da13ab.css",
-    "static/js/main.dd6bcf9f.js"
+    "static/js/main.1a836420.js"
   ]
 }
