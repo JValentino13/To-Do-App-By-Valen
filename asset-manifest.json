@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/To-Do-App_By-Valen/static/css/main.d3ef0e7b.css",
+    "main.js": "/To-Do-App_By-Valen/static/js/main.edeb382a.js",
+    "static/js/453.7c759e1d.chunk.js": "/To-Do-App_By-Valen/static/js/453.7c759e1d.chunk.js",
+    "index.html": "/To-Do-App_By-Valen/index.html",
+    "main.d3ef0e7b.css.map": "/To-Do-App_By-Valen/static/css/main.d3ef0e7b.css.map",
+    "main.edeb382a.js.map": "/To-Do-App_By-Valen/static/js/main.edeb382a.js.map",
+    "453.7c759e1d.chunk.js.map": "/To-Do-App_By-Valen/static/js/453.7c759e1d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d3ef0e7b.css",
+    "static/js/main.edeb382a.js"
+  ]
+}
