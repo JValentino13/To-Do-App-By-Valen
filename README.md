@@ -15,4 +15,4 @@
 </p>
 
 <h3 align="left">See My App</h3>
-<button href="https://to-do-app-valen.web.app/">Click Here</button>
+<a href="https://to-do-app-valen.web.app/" target="blank"><button>Click Here</button></a>
