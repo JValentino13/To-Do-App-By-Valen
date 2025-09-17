@@ -1,6 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 2%;
+  flex-wrap: wrap;
+}
+
+.item:nth-child(1) {
+  height: 35%;
+  width: 100%;
+  background-color: red;
+}
+
+.item:nth-child(2) {
+  height: 60%;
+  width: 25%;
+  align-self: center;
+  background-color: yellow;
+}
+
+.item:nth-child(3) {
+  height: 60%;
+  width: 40%;
+  align-self: center;
+  background-color: green;
+}
+
+.item:nth-child(4) {
+  height: 60%;
+  flex-grow: 1;
+  align-self: center;
+  background-color: blue;
+}
+
 /* Kontainer utama */
 .app-container {
-  font-family: 'Arial', sans-serif;
+  font-family: Poppins, Roboto, "Noto Sans Hebrew", "Noto Kufi Arabic", "Noto Sans JP", sans-serif;
   max-width: 600px;
   margin: 20px auto;
   padding: 16px;
@@ -22,6 +56,7 @@
   display: flex;
   gap: 8px;
   margin-bottom: 20px;
+  font-family: Poppins, Roboto, "Noto Sans Hebrew", "Noto Kufi Arabic", "Noto Sans JP", sans-serif;
 }
 
 .task-form input {
@@ -30,6 +65,7 @@
   border-radius: 8px;
   border: 1px solid #ddd;
   font-size: 0.95rem;
+  font-family: Poppins, Roboto, "Noto Sans Hebrew", "Noto Kufi Arabic", "Noto Sans JP", sans-serif;
 }
 
 .task-form button {
@@ -40,6 +76,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s;
+  font-family: Poppins, Roboto, "Noto Sans Hebrew", "Noto Kufi Arabic", "Noto Sans JP", sans-serif; 
 }
 
 .task-form button:hover {

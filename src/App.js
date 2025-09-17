@@ -1,14 +1,21 @@
-/** @format */
-
 import React from "react";
+import { db } from "./firebaseConfig";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
-// Komponen untuk menampilkan 1 task
+// Komponen task
 class SchoolTask extends React.Component {
   render() {
     const { subject, task, isDone } = this.props;
     return (
       <div className={`task-card ${isDone ? "done" : ""}`}>
-        <div className='task-info'>
+        <div className="task-info">
           <strong>{subject}</strong> -{" "}
           <span className={isDone ? "strike" : ""}>{task}</span>
         </div>
@@ -17,67 +24,67 @@ class SchoolTask extends React.Component {
   }
 }
 
-// Komponen tombol Done / Not Yet
+// Tombol Done / Not Yet / Delete
 function Status({ taskId, isDone, onUpdate, onDelete }) {
-  const updateDone = (status) => {
-    fetch(`http://localhost:5000/tasks/${taskId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ done: status }),
-    })
-      .then((res) => res.text())
-      .then(() => onUpdate(taskId, status))
-      .catch((err) => console.log(err));
+  const updateDone = async (status) => {
+    try {
+      await updateDoc(doc(db, "tasks", taskId), { done: status });
+      onUpdate(taskId, status);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const deleteTask = () => {
-    fetch(`http://localhost:5000/tasks/${taskId}`, { method: "DELETE" })
-      .then((res) => res.text())
-      .then(() => onDelete(taskId))
-      .catch((err) => console.log(err));
+  const deleteTask = async () => {
+    try {
+      await deleteDoc(doc(db, "tasks", taskId));
+      onDelete(taskId);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
-    <div className='status-buttons'>
-      <button className='btn done-btn' onClick={() => updateDone(true)}>
+    <div className="status-buttons">
+      <button className="btn done-btn" onClick={() => updateDone(true)}>
         Done
       </button>
-      <button className='btn notyet-btn' onClick={() => updateDone(false)}>
+      <button className="btn notyet-btn" onClick={() => updateDone(false)}>
         Not Yet
       </button>
-      <button className='btn delete-btn' onClick={deleteTask}>
+      <button className="btn delete-btn" onClick={deleteTask}>
         Delete
       </button>
     </div>
   );
 }
 
-// Form untuk menambah task baru
-function FormToSheet({ onAdd }) {
-  const handleSubmit = (e) => {
+// Form tambah task
+function Form({ onAdd }) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const subject = e.target.subject.value.trim();
     const task = e.target.task.value.trim();
     if (!subject || !task) return;
 
-    fetch("http://localhost:5000/tasks", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ subject, task }),
-    })
-      .then((res) => res.text())
-      .then(() => {
-        onAdd(); // refresh list
-        e.target.reset();
-      })
-      .catch((error) => console.log(error));
+    try {
+      await addDoc(collection(db, "tasks"), {
+        subject,
+        task,
+        done: false,
+      });
+      e.target.reset();
+      onAdd(); // Refresh otomatis kalau perlu
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
-    <form className='task-form' onSubmit={handleSubmit}>
-      <input name='subject' placeholder='Subject' required />
-      <input name='task' placeholder='Task' required />
-      <button className='btn add-btn' type='submit'>
+    <form className="task-form" onSubmit={handleSubmit}>
+      <input name="subject" placeholder="Subject" required />
+      <input name="task" placeholder="Task" required />
+      <button className="btn add-btn" type="submit">
         Add Task
       </button>
     </form>
@@ -87,21 +94,23 @@ function FormToSheet({ onAdd }) {
 // Komponen utama
 function App() {
   const [tasks, setTasks] = React.useState([]);
+
+  React.useEffect(() => {
+    // Dengarkan perubahan realtime
+    const unsubscribe = onSnapshot(collection(db, "tasks"), (snapshot) => {
+      const data = snapshot.docs.map((docSnap) => ({
+        id: docSnap.id,
+        ...docSnap.data(),
+      }));
+      setTasks(data);
+    });
+
+    return () => unsubscribe(); // cleanup listener
+  }, []);
+
   const handleDeleteTask = (id) => {
     setTasks((prev) => prev.filter((item) => item.id !== id));
   };
-
-  // Ambil data dari MySQL
-  const fetchData = () => {
-    fetch("http://localhost:5000/tasks")
-      .then((res) => res.json())
-      .then((data) => setTasks(data))
-      .catch((err) => console.log(err));
-  };
-
-  React.useEffect(() => {
-    fetchData();
-  }, []);
 
   const handleUpdateDone = (id, status) => {
     setTasks((prev) =>
@@ -110,11 +119,11 @@ function App() {
   };
 
   return (
-    <div className='app-container'>
+    <div className="app-container">
       <h1>List Tugas</h1>
-      <FormToSheet onAdd={fetchData} />
+      <Form onAdd={() => {}} /> {/* Tidak perlu refetch manual */}
       {tasks.map((item) => (
-        <div className='task-wrapper' key={item.id}>
+        <div className="task-wrapper" key={item.id}>
           <SchoolTask
             subject={item.subject}
             task={item.task}
