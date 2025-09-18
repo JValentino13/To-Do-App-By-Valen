@@ -15,4 +15,5 @@
 </p>
 
 <h3 align="left">See My App</h3>
-<a href="https://to-do-app-valen.web.app/" target="blank"><button>Click Here</button></a>
+<p>Click link below to see it</p>
+<p>https://to-do-app-valen.web.app/</p>
