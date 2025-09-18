@@ -12,7 +12,7 @@ import {
 // Komponen task
 class SchoolTask extends React.Component {
   render() {
-    const { subject, task, isDone } = this.props;
+    const { subject, task, isDone } = this.props; //Props bab 6
     return (
       <div className={`task-card ${isDone ? "done" : ""}`}>
         <div className="task-info">
@@ -61,7 +61,7 @@ function Status({ taskId, isDone, onUpdate, onDelete }) {
 
 // Form tambah task
 function Form({ onAdd }) {
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => { //Event bab 7
     e.preventDefault();
     const subject = e.target.subject.value.trim();
     const task = e.target.task.value.trim();
@@ -74,13 +74,13 @@ function Form({ onAdd }) {
         done: false,
       });
       e.target.reset();
-      onAdd(); // Refresh otomatis kalau perlu
+      onAdd(); 
     } catch (err) {
       console.error(err);
     }
   };
 
-  return (
+  return ( //Form Processing bab 11
     <form className="task-form" onSubmit={handleSubmit}>
       <input name="subject" placeholder="Subject" required />
       <input name="task" placeholder="Task" required />
@@ -93,10 +93,9 @@ function Form({ onAdd }) {
 
 // Komponen utama
 function App() {
-  const [tasks, setTasks] = React.useState([]);
+  const [tasks, setTasks] = React.useState([]); //State bab 8 and UseState bab 9
 
   React.useEffect(() => {
-    // Dengarkan perubahan realtime
     const unsubscribe = onSnapshot(collection(db, "tasks"), (snapshot) => {
       const data = snapshot.docs.map((docSnap) => ({
         id: docSnap.id,
@@ -105,7 +104,7 @@ function App() {
       setTasks(data);
     });
 
-    return () => unsubscribe(); // cleanup listener
+    return () => unsubscribe(); 
   }, []);
 
   const handleDeleteTask = (id) => {
@@ -121,7 +120,7 @@ function App() {
   return (
     <div className="app-container">
       <h1>List Tugas</h1>
-      <Form onAdd={() => {}} /> {/* Tidak perlu refetch manual */}
+      <Form onAdd={() => {}} /> 
       {tasks.map((item) => (
         <div className="task-wrapper" key={item.id}>
           <SchoolTask

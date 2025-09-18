@@ -8,11 +8,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
   <div class="container">
-    <div class="item">1</div>
-    <div class="item">4</div>
+    <div class="item"></div>
+    <div class="item"></div>
     <div class="item"><App/></div>
-    <div class="item">6</div>
-  </div>
+    <div class="item"></div>
+  </div>  
   </React.StrictMode>
 );
 
